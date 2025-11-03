@@ -1,0 +1,6 @@
+# Arquivos compilados (executáveis)
+sensor
+ecu
+
+# Arquivos de log
+*.csv
