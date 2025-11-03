@@ -9,7 +9,7 @@ int main() {
     char* pipe_path = "/tmp/sensor_pipe"; 
     char* control_path = "/tmp/control_pipe";
 
-    // --- Novas Variáveis para a Simulação ---
+    // Novas Variáveis para a Simulação
     float posicao_pista = 0.0;     // 0.0 é o centro perfeito da pista.
     float desvio_natural = 0.05;   // A cada segundo, o carro "puxa" 5cm para a direita.
     float correcao_volante = -0.10; // O comando "ESQUERDA" corrige 10cm
@@ -31,33 +31,29 @@ int main() {
     printf("[SENSOR] 'Canos' abertos. Iniciando simulação de veículo.\n");
 
     while (1) {
-        // --- Lógica da Simulação ---
+        // Lógica da Simulação
         posicao_pista += desvio_natural;
-        // -------------------------
 
-        // --- Novo Formato de Dado ---
+        // Novo Formato de Dado 
         fprintf(pipe_sensor, "POS:%.2f\n", posicao_pista);
         fflush(pipe_sensor);
-        // -------------------------
 
         printf("[SENSOR] Posição (antes da correção): %.2f. Aguardando ECU...\n", posicao_pista);
 
-       // --- 3. Esperar e Ler o Comando da ECU ---
+       // Esperar e Ler o Comando da ECU
         // O programa vai PARAR AQUI (bloquear) até a ECU responder
         if (fgets(buffer_comando, 100, pipe_controle) != NULL) {
             
             // --- Lição de C: Comparando Strings ---
             // Não podemos fazer `if (buffer_comando == "ESQUERDA\n")`.
-            // Em C, usamos "strcmp" (string compare). Retorna 0 se forem iguais.
-            // "strcspn" é usado para remover o "\n" (quebra de linha) que o fgets lê.
+            // Retorna 0 se forem iguais.
             buffer_comando[strcspn(buffer_comando, "\n")] = 0;
 
-            // --- 4. Aplicar a Correção ---
+            // Aplicar a Correção
             if (strcmp(buffer_comando, "ESQUERDA") == 0) {
                 posicao_pista += correcao_volante; // Aplica a correção (-0.10)
                 printf("[SENSOR] ECU mandou: ESQUERDA. Posição corrigida: %.2f\n", posicao_pista);
             } else if (strcmp(buffer_comando, "DIREITA") == 0) {
-                // (Nossa ECU nunca manda isso, mas é bom ter)
                 posicao_pista -= correcao_volante; // Correção oposta
                 printf("[SENSOR] ECU mandou: DIREITA. Posição corrigida: %.2f\n", posicao_pista);
             } else {

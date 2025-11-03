@@ -5,7 +5,7 @@
 #include <time.h> //Timestamp do log
 #include <pthread.h> // Biblioteca de Threads
 
-// --- Nosso "Armazém" de Dados Global ---
+// --- "Armazém" de Dados Global ---
 // Esta é a "caixa" onde a Thread de Controle (main)
 // vai deixar os dados para a Thread de Logger pegar
 struct Telemetria
@@ -75,7 +75,7 @@ void* logger_loop(void* arg) {
  */
 
 int main() {
-    // Nossos Dois Canos 
+    // Dois Canos 
     FILE *pipe_sensor;
     FILE *pipe_controle; // Ponteiro para o "cano" de controle
     char* sensor_path = "/tmp/sensor_pipe";
