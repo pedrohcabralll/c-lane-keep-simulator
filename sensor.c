@@ -18,11 +18,11 @@ int main() {
 
     printf("[SENSOR] Iniciando. Abrindo os canos...\n");
 
-    // PASSO 1: ABRIR o "cano" (usando a variável) e dar valor ao pipe_sensor
+    // Abrir o "cano" (usando a variável) e dar valor ao pipe_sensor
     pipe_sensor = fopen(pipe_path, "w");
     pipe_controle = fopen(control_path, "r");
 
-    // PASSO 2: CHECAR se o passo 1 falhou
+    // Checar se o passo 1 falhou
     if (pipe_sensor == NULL || pipe_controle == NULL) {
         perror("Erro ao abrir um dos 'canos'");
         return 1;
@@ -41,12 +41,8 @@ int main() {
         printf("[SENSOR] Posição (antes da correção): %.2f. Aguardando ECU...\n", posicao_pista);
 
        // Esperar e Ler o Comando da ECU
-        // O programa vai PARAR AQUI (bloquear) até a ECU responder
+        // O programa para aqui(bloquear) até a ECU responder
         if (fgets(buffer_comando, 100, pipe_controle) != NULL) {
-            
-            // --- Lição de C: Comparando Strings ---
-            // Não podemos fazer `if (buffer_comando == "ESQUERDA\n")`.
-            // Retorna 0 se forem iguais.
             buffer_comando[strcspn(buffer_comando, "\n")] = 0;
 
             // Aplicar a Correção

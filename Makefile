@@ -1,4 +1,4 @@
-# --- Makefile para o Simulador LISHA (com Threads) ---
+# Makefile para o Simulador LISHA (com Threads)
 
 # Variáveis para facilitar a manutenção
 CC=gcc
@@ -20,6 +20,5 @@ ecu: controlador_ecu.c
 	$(CC) $(CFLAGS) -o ecu controlador_ecu.c $(LDFLAGS)
 
 # Alvo "clean": para limpar os arquivos compilados e recomeçar.
-# É uma boa prática ter isso.
 clean:
 	rm -f sensor ecu telemetria_log.csv 
