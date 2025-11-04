@@ -1,6 +1,10 @@
 # Arquivos compilados (executáveis)
 sensor
 ecu
+hello
 
 # Arquivos de log
 *.csv
+
+# Configurações do editor
+.vscode/
