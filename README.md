@@ -6,7 +6,7 @@ O sistema simula a arquitetura de um veículo moderno, com dois processos indepe
 
 ## 🍿 Demonstração
 
-![Demonstração do Simulador nos 3 Terminais](https://github.com/pedrohcabralll/c-lane-keep-simulator/blob/main/demonstracao.jpeg?raw=true)
+![Demonstração do Simulador nos 3 Terminais](https://github.com/pedrohcabralll/c-lane-keep-simulator/blob/main/demonstracao.png?raw=true)
 
 * **Terminal do Sensor (Veículo):** Simula o carro "puxando" para a direita e, em seguida, sendo corrigido pela ECU.
 * **Terminal da ECU (Controlador):** Lê os dados do sensor e toma decisões em tempo real, enviando comandos de correção.
